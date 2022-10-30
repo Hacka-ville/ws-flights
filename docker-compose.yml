@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+
+  api_service:
+    image: "openjdk:17-jdk-oraclelinux8"
+    build: .
+    restart: "no"
+    command: java -jar docker-jar-file.jar
+    ports:
+      - 8080:8080
+    depends_on:
+      - flights_db
+
+  flights_db:
+    image: postgres
+    container_name: flights-postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: flights
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d flights -U user" ]
+      interval: 30s
+      timeout: 30s
+      retries: 3
