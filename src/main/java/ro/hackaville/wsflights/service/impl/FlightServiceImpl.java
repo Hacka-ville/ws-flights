@@ -46,7 +46,7 @@ public class FlightServiceImpl implements FlightService {
 
         if ("ASC".equals(request.getFlightsFilter().getOrderType())) {
             flightsList = flightRepository.getFlightsByFiltersOrderbyAsc(request.getStartDate(),
-                            request.getEndDate(), request.getLocation(),
+                            request.getEndDate(), request.getLocation().getFlightLocation(), request.getLocation().getArriveLocation(),
                             request.getFlightsFilter().getFlightOperator(),
                             request.getFlightsFilter().getMinPrice(),
                             request.getFlightsFilter().getMaxPrice(),
@@ -62,7 +62,7 @@ public class FlightServiceImpl implements FlightService {
 
         } else if ("DESC".equals(request.getFlightsFilter().getOrderType())) {
             flightsList = flightRepository.getFlightsByFiltersOrderbyDesc(request.getStartDate(),
-                            request.getEndDate(), request.getLocation(),
+                            request.getEndDate(), request.getLocation().getFlightLocation(), request.getLocation().getArriveLocation(),
                             request.getFlightsFilter().getFlightOperator(),
                             request.getFlightsFilter().getMinPrice(),
                             request.getFlightsFilter().getMaxPrice(),
@@ -78,7 +78,7 @@ public class FlightServiceImpl implements FlightService {
 
         } else {
             flightsList = flightRepository.getFlightsByFilters(request.getStartDate(),
-                            request.getEndDate(), request.getLocation(),
+                            request.getEndDate(), request.getLocation().getFlightLocation(), request.getLocation().getArriveLocation(),
                             request.getFlightsFilter().getFlightOperator(),
                             request.getFlightsFilter().getMinPrice(),
                             request.getFlightsFilter().getMaxPrice(),

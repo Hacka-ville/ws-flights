@@ -12,7 +12,8 @@ import java.time.LocalDate;
 @Builder
 public class FlightsRequest {
 
-    private Location location;
+    @Builder.Default
+    private Location location = Location.builder().build();
 
     @Builder.Default
     private FlightsFilter flightsFilter = FlightsFilter.builder().build();

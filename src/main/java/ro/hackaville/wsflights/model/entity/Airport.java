@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import ro.hackaville.wsflights.model.dao.City;
 
 import javax.persistence.*;
 

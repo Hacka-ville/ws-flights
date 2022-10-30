@@ -1,4 +1,4 @@
-package ro.hackaville.wsflights.model.entity;
+package ro.hackaville.wsflights.model.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
