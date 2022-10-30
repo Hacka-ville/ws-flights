@@ -8,7 +8,7 @@ services:
     restart: "no"
     command: java -jar docker-jar-file.jar
     ports:
-      - 8080:8080
+      - 9090:9090
     depends_on:
       - flights_db
 

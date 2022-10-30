@@ -20,7 +20,7 @@ public class FlightController {
         return flightService.getFlightById(id);
     }
 
-    @GetMapping
+    @PostMapping
     public List<FlightDto> getFlightsByFilters(@RequestBody final FlightsRequest request) {
         return flightService.getFlightsByFilter(request);
     }

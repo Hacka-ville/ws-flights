@@ -4,7 +4,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.lang.NonNull;
-import ro.hackaville.wsflights.model.dao.Location;
 import ro.hackaville.wsflights.model.entity.Flight;
 
 import java.math.BigDecimal;
@@ -23,7 +22,8 @@ public interface FlightRepository extends JpaRepository<Flight, String> {
 
     @Query("""
                 SELECT F FROM Flight F
-                WHERE F.location = :location
+                WHERE ((:flightLocation = '' OR F.location.flightLocation = :flightLocation) AND
+                (:arriveLocation = '' OR F.location.arriveLocation = :arriveLocation))
                 AND (F.flightInformations.date >= :startDate AND F.flightInformations.date <= :endDate)
                 AND F.price BETWEEN :minPrice AND :maxPrice
                 AND (:flightOperator = '' OR F.operator.name = :flightOperator)
@@ -33,7 +33,8 @@ public interface FlightRepository extends JpaRepository<Flight, String> {
             """)
     List<Flight> getFlightsByFiltersOrderbyAsc(@NonNull final LocalDate startDate,
                                                @NonNull final LocalDate endDate,
-                                               final Location location,
+                                               final String flightLocation,
+                                               final String arriveLocation,
                                                final String flightOperator,
                                                final BigDecimal minPrice,
                                                final BigDecimal maxPrice,
@@ -46,7 +47,8 @@ public interface FlightRepository extends JpaRepository<Flight, String> {
 
     @Query("""
                 SELECT F FROM Flight F
-                WHERE F.location = :location
+                WHERE ((:flightLocation = '' OR F.location.flightLocation = :flightLocation) AND
+                (:arriveLocation = '' OR F.location.arriveLocation = :arriveLocation))
                 AND (F.flightInformations.date >= :startDate AND F.flightInformations.date <= :endDate)
                 AND F.price BETWEEN :minPrice AND :maxPrice
                 AND (:flightOperator = '' OR F.operator.name = :flightOperator)
@@ -56,7 +58,8 @@ public interface FlightRepository extends JpaRepository<Flight, String> {
             """)
     List<Flight> getFlightsByFiltersOrderbyDesc(@NonNull final LocalDate startDate,
                                                 @NonNull final LocalDate endDate,
-                                                final Location location,
+                                                final String flightLocation,
+                                                final String arriveLocation,
                                                 final String flightOperator,
                                                 final BigDecimal minPrice,
                                                 final BigDecimal maxPrice,
@@ -69,7 +72,8 @@ public interface FlightRepository extends JpaRepository<Flight, String> {
 
     @Query("""
                 SELECT F FROM Flight F
-                WHERE F.location = :location
+                WHERE ((:flightLocation = '' OR F.location.flightLocation = :flightLocation) AND
+                (:arriveLocation = '' OR F.location.arriveLocation = :arriveLocation))
                 AND (F.flightInformations.date >= :startDate AND F.flightInformations.date <= :endDate)
                 AND F.price BETWEEN :minPrice AND :maxPrice
                 AND (:flightOperator = '' OR F.operator.name = :flightOperator)
@@ -78,7 +82,8 @@ public interface FlightRepository extends JpaRepository<Flight, String> {
             """)
     List<Flight> getFlightsByFilters(@NonNull final LocalDate startDate,
                                      @NonNull final LocalDate endDate,
-                                     final Location location,
+                                     final String flightLocation,
+                                     final String arriveLocation,
                                      final String flightOperator,
                                      final BigDecimal minPrice,
                                      final BigDecimal maxPrice,

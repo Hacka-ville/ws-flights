@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ro.hackaville.wsflights.model.entity.City;
+import ro.hackaville.wsflights.model.dao.City;
 
 @Getter
 @Setter

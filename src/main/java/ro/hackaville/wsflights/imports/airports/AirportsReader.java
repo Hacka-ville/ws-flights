@@ -4,8 +4,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import ro.hackaville.wsflights.imports.airports.objects.ObjectDataReader;
 import ro.hackaville.wsflights.imports.airports.objects.ObjectReader;
+import ro.hackaville.wsflights.model.dao.City;
 import ro.hackaville.wsflights.model.dto.AirportDto;
-import ro.hackaville.wsflights.model.entity.City;
 
 import java.util.ArrayList;
 import java.util.List;

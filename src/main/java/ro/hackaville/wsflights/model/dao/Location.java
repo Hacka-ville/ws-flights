@@ -1,9 +1,6 @@
 package ro.hackaville.wsflights.model.dao;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Embeddable;
 
@@ -11,10 +8,13 @@ import javax.persistence.Embeddable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Embeddable
 public class Location {
 
-    private String flightLocation;
+    @Builder.Default
+    private String flightLocation = "";
 
-    private String arriveLocation;
+    @Builder.Default
+    private String arriveLocation = "";
 }
